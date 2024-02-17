@@ -1,7 +1,7 @@
 return {
-  "romainl/Apprentice",
+  "sainnhe/sonokai",
     priority = 1000,
-    config = function() 
-     vim.cmd([[colorscheme apprentice]]) 
+    config = function()
+     vim.cmd([[colorscheme sonokai]])
    end
 }
