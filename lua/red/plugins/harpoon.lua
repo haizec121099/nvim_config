@@ -11,23 +11,25 @@ return {
 
     harpoon:setup()
 
-    keymap.set("n", "<leader>hu", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", { desc = "Show marked files"})
+    keymap.set("n", "<leader>hu", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Show marked files"})
 
     keymap.set(
       "n",
       "<leader>hm",
-      "<cmd>lua require('harpoon.mark').add_file()<cr>",
+      function() harpoon:list():append() end,
       { desc = "Mark file with harpoon" }
     )
-    keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", { desc = "Go to next harpoon mark" })
+    keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Go to next harpoon mark" })
     keymap.set(
       "n",
       "<leader>hb",
-      "<cmd>lua require('harpoon.ui').nav_prev()<cr>",
+      function() harpoon:list():prev() end,
       { desc = "Go to previous harpoon mark" }
     )
 
-    local cmd = vim.cmd
-    cmd("command! -nargs=1 HF lua require('harpoon.ui').nav_file(<args>)<cr>")
+    keymap.set("n", "<C-q>", function() harpoon:list():select(1) end)
+    keymap.set("n", "<C-w>", function() harpoon:list():select(2) end)
+    keymap.set("n", "<C-e>", function() harpoon:list():select(3) end)
+    keymap.set("n", "<C-r>", function() harpoon:list():select(4) end)
   end,
 }
