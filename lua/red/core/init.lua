@@ -8,4 +8,10 @@ vim.g.netrw_keepdir = 1
 vim.g.netrw_banner = 0
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<C-s>", vim.cmd.w)
+vim.keymap.set("n", "<C-s>", function ()
+  vim.cmd([[
+    w
+    noh
+  ]])
+end)
+
