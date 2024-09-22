@@ -16,7 +16,7 @@ return {
     keymap.set(
       "n",
       "<leader>hm",
-      function() harpoon:list():append() end,
+      function() harpoon:list():add() end,
       { desc = "Mark file with harpoon" }
     )
     keymap.set("n", "<leader>hn", function() harpoon:list():next() end, { desc = "Go to next harpoon mark" })
