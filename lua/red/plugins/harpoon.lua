@@ -27,9 +27,9 @@ return {
       { desc = "Go to previous harpoon mark" }
     )
 
-    keymap.set("n", "<C-q>", function() harpoon:list():select(1) end)
-    keymap.set("n", "<C-w>", function() harpoon:list():select(2) end)
-    keymap.set("n", "<C-e>", function() harpoon:list():select(3) end)
-    keymap.set("n", "<C-r>", function() harpoon:list():select(4) end)
+    keymap.set("n", "<A-q>", function() harpoon:list():select(1) end)
+    keymap.set("n", "<A-w>", function() harpoon:list():select(2) end)
+    keymap.set("n", "<A-e>", function() harpoon:list():select(3) end)
+    keymap.set("n", "<A-r>", function() harpoon:list():select(4) end)
   end,
 }
