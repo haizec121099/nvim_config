@@ -4,6 +4,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.g.mapleader = " "
+vim.o.termguicolors = true
 vim.g.netrw_keepdir = 1
 vim.g.netrw_banner = 1
 
