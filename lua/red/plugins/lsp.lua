@@ -23,7 +23,7 @@ return {
             callback = function(ev)
                 local opts = { buffer = ev.buffer }
                 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-                vim.keymap.set("n", "gi", function() vim.lsp.buf.implementationu() end, opts)
+                vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
                 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
                 vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
                 vim.keymap.set("n", "<leader>nt", function() vim.diagnostic.open_float() end, opts)
@@ -37,12 +37,30 @@ return {
             end
         })
 
+        local servers = {
+            volar = {
+                filetypes = { 'vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+                init_options = {
+                    vue = {
+                        hybridMode = false,
+                    },
+                    typescript = {
+                        tsdk = '<path_to>/lib/node_modules/typescript/lib',
+                    },
+                },
+            },
+        },
+
         -- LSP servers
         require("mason").setup()
         require("mason-lspconfig").setup({
             handlers = {
                 function(server_name)
-                    require('lspconfig')[server_name].setup({})
+                    local server = servers[server_name] or {}
+                    if (server_name == "volar") then 
+                        server.filetypes = { "vue", "typescript", "javascript"}
+                    end
+                    require('lspconfig')[server_name].setup(server)
                 end
             }
         })
