@@ -39,7 +39,7 @@ return {
 
         local servers = {
             volar = {
-                filetypes = { 'vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+                filetypes = { 'vue', 'javascript', 'typescript'},
                 init_options = {
                     vue = {
                         hybridMode = false,
@@ -51,15 +51,10 @@ return {
             },
         },
 
-        -- LSP servers
         require("mason").setup()
         require("mason-lspconfig").setup({
             handlers = {
                 function(server_name)
-                    local server = servers[server_name] or {}
-                    if (server_name == "volar") then 
-                        server.filetypes = { "vue", "typescript", "javascript"}
-                    end
                     require('lspconfig')[server_name].setup(server)
                 end
             }
