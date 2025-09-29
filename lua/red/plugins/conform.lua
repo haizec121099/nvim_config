@@ -3,18 +3,10 @@ return {
     config = function()
         require("conform").setup({
             format_by_ft = {
-                lua = {
-                    function(bufnr)
-                        return { "stylua" }
-                    end
-                },
+                lua = { "stylua" },
                 go = { "gofmt" },
-                javascript = { "prettier" },
-                vue = {
-                    function(bufnr)
-                        return { "prettier" }
-                    end
-                },
+                javascript = {"prettierd", "prettier", stop_after_first = true},
+                vue = {"prettierd", "prettier", stop_after_first = true},
                 php = { "pint" },
             },
             format_on_save = {
