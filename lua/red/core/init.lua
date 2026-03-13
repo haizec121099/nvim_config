@@ -1,4 +1,5 @@
 vim.opt.number = true
+vim.g.have_nerd_font = true
 vim.opt.relativenumber = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -7,6 +8,7 @@ vim.g.mapleader = " "
 vim.o.termguicolors = true
 vim.g.netrw_keepdir = 1
 vim.g.netrw_banner = 1
+vim.o.winborder = 'rounded'
 
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>")
 vim.keymap.set("n", "<C-s>", function()
