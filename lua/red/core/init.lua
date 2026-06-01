@@ -25,3 +25,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end
 })
+
+local group = vim.api.nvim_create_augroup("RememberFolds", { clear = true })
+
+vim.api.nvim_create_autocmd('BufWinLeave', {
+    desc = "Save Folds",
+    pattern = "*",
+    group = group,
+    command = "mkview"
+})
+
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    desc = "Restore Folds",
+    pattern = "*",
+    group = group,
+    command = "silent! loadview"
+})
