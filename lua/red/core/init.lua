@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd('BufWinLeave', {
     desc = "Save Folds",
     pattern = "*",
     group = group,
-    command = "mkview"
+    command = "silent! mkview"
 })
 
 
