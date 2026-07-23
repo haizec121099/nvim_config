@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "fileSystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "/var/www/html/ftlp",
+                "/var/www/html/bouvet"
+            ]
+        }
+    }
+}

@@ -3,9 +3,9 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        { "hrsh7th/cmp-nvim-lsp" },
         { "williamboman/mason.nvim" },
-        { "williamboman/mason-lspconfig.nvim" }
+        { "williamboman/mason-lspconfig.nvim" },
+        { "saghen/blink.cmp" }
     },
     config = function()
         vim.opt.signcolumn = "yes"
@@ -15,7 +15,7 @@ return {
         lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
             'force',
             lspconfig.util.default_config.capabilities,
-            require("cmp_nvim_lsp").default_capabilities()
+            require("blink.cmp").get_lsp_capabilities()
         )
 
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -73,7 +73,7 @@ return {
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
 
                 -- Intercept volar and ts_ls on attach and force their formatting capabilities to false
-                if client and (client.name == "volar" or client.name == "ts_ls") then
+                if client and (client.name == "vue_ls" or client.name == "ts_ls") then
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentFormattingRangeProvider = false
                 end
@@ -82,9 +82,9 @@ return {
 
         -- 2. Define structural configurations using Neovim 0.12 Native Config Methods
         local vue_plugin_path = vim.fn.stdpath('data') ..
-            '/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+            '/mason/packages/vue-language-server/node_modules/@vue/language-server'
 
-        vim.lsp.config("volar", {
+        vim.lsp.config("vue_ls", {
             filetypes = { 'typescript', 'javascript', 'vue' },
             init_options = { vue = { hybridMode = false } }
         })
@@ -103,20 +103,6 @@ return {
         })
 
         -- 3. Globally enable them
-        vim.lsp.enable({ "volar", "ts_ls" })
-
-        local cmp = require("cmp")
-
-        cmp.setup({
-            sources = {
-                { name = "nvim_lsp" }
-            },
-            snippet = {
-                expand = function(args)
-                    vim.snippet.expand(args.body)
-                end
-            },
-            mapping = cmp.mapping.preset.insert({})
-        })
+        vim.lsp.enable({ "vue_ls", "ts_ls" })
     end
 }

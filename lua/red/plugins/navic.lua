@@ -1,9 +1,9 @@
 return {
-  "SmiteshP/nvim-navic",
-  dependencies = { "neovim/nvim-lspconfig"},
-  config = function ()
-    local navic = require("nvim-navic")
-    navic.setup({
+    "SmiteshP/nvim-navic",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+        local navic = require("nvim-navic")
+        navic.setup({
             icons = {
                 File          = "󰈙 ",
                 Module        = " ",
@@ -34,7 +34,7 @@ return {
             },
             lsp = {
                 auto_attach = true,
-                preference = nil,
+                preference = { "vue_ls", "ts_ls" },
             },
             highlight = true,
             separator = " > ",
@@ -49,13 +49,13 @@ return {
         })
 
         require("lualine").setup({
-          winbar = {
+            winbar = {
                 lualine_c = {
                     {
-                        function ()
+                        function()
                             return navic.get_location()
                         end,
-                        cond = function ()
+                        cond = function()
                             return navic.is_available()
                         end
                     }
@@ -64,5 +64,5 @@ return {
         })
 
         vim.g.navic_silence = false
-  end
+    end
 }
