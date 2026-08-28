@@ -1,6 +1,9 @@
 return {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        "NotAShelf/direnv.nvim"
+    },
     config = function()
         require("lualine").setup({
             options = {
@@ -25,7 +28,12 @@ return {
                 lualine_a = { 'mode' },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = { 'filename' },
-                lualine_x = { 'encoding', 'fileformat', 'filetype' },
+                lualine_x = {
+                    function()
+                        return require('direnv').statusline()
+                    end,
+                    'encoding', 'fileformat', 'filetype'
+                },
                 lualine_y = { 'progress' },
                 lualine_z = { 'location' }
             },

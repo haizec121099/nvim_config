@@ -18,22 +18,22 @@ return {
             ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-e>"] = { "hide", "fallback" },
             ["<CR>"] = { "accept", "fallback" },
-            ['<A-y>'] = { function()
-                require('minuet').make_blink_map()
-            end },
+            -- ['<A-y>'] = { function()
+            --     require('minuet').make_blink_map()
+            -- end },
         },
 
         sources = {
-            default = { "lsp", "path", "snippets", "buffer", "minuet" },
+            default = { "lsp", "path", "snippets", "buffer" },
             providers = {
                 -- Bridge the legacy nvim-cmp 'minuet' plugin into blink
-                minuet = {
-                    name = "minuet",
-                    module = "minuet.blink",
-                    score_offset = 100,
-                    async = true, -- CRITICAL: Stops blink from blocking your UI thread
-                    timeout_ms = 3000
-                },
+                -- minuet = {
+                --     name = "minuet",
+                --     module = "minuet.blink",
+                --     score_offset = 100,
+                --     async = true, -- CRITICAL: Stops blink from blocking your UI thread
+                --     timeout_ms = 3000
+                -- },
             },
         },
         completion = {
